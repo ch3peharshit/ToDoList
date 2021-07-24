@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 //let items = []
 // let workItems = []
 
-mongoose.connect("mongodb://localhost:27017/todolistDB",{useNewUrlParser:true,useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://test123:test123@cluster0.vn1ak.mongodb.net/todolistDB?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology: true})
 
 const itemSchema = mongoose.Schema({
     name:String
@@ -129,6 +129,10 @@ app.post('/',function(req,res){
 app.get('/about',function(req,res){
     res.render("about")
 })
-app.listen(3000,function(){
-    console.log("listening to 3000")
+let port = process.env.port
+if(port == null || port =="") {
+    port =3000
+}
+app.listen(port,function(){
+    console.log("listening to"+port)
 })
